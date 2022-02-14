@@ -1,69 +1,76 @@
-let options = ["rock", "paper", "scissors"];
+const rockBtn = document.getElementById("rockBtn");
+const paperBtn = document.getElementById("paperBtn");
+const scissorsBtn = document.getElementById("scissorsBtn");
+const resultsParagraph = document.getElementById("results");
+const showPlayerScore = document.getElementById("show-player-score");
+const showComputerScore = document.getElementById("show-computer-score");
 
-function computerPlay() {
-  return options[Math.floor(Math.random() * options.length)];
-}
+let playerSelection;
+
+rockBtn.addEventListener("click", function () {
+  playerSelection = "rock";
+  game();
+});
+
+paperBtn.addEventListener("click", function () {
+  playerSelection = "paper";
+  game();
+});
+
+scissorsBtn.addEventListener("click", function () {
+  playerSelection = "scissors";
+  game();
+});
 
 let playerScore = 0;
 let computerScore = 0;
 
-//if statement
+let options = ["rock", "paper", "scissors"];
+
+let computerSelection;
+
+function computerPlay() {
+  computerSelection = options[Math.floor(Math.random() * options.length)];
+}
+
 function playRound(playerSelection, computerSelection) {
-  if (
-    playerSelection.toLowerCase() == "rock" &&
-    computerSelection == "scissors"
-  ) {
+  computerPlay();
+  if (playerSelection === "rock" && computerSelection === "scissors") {
     playerScore++;
-    return "You Win! Rock beats scissors!";
-  } else if (
-    playerSelection.toLowerCase() == "paper" &&
-    computerSelection == "rock"
-  ) {
+    resultsParagraph.innerHTML = "You Win! Rock beats scissors!";
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
     playerScore++;
-    return "You Win! Paper beats rock!";
-  } else if (
-    playerSelection.toLowerCase() == "scissors" &&
-    computerSelection == "paper"
-  ) {
+    resultsParagraph.innerHTML = "You Win! Paper beats rock!";
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
     playerScore++;
-    return "You Win! Scissors beats paper!";
-  } else if (
-    computerSelection == "rock" &&
-    playerSelection.toLowerCase() == "scissors"
-  ) {
+    resultsParagraph.innerHTML = "You Win! Scissors beats paper!";
+  } else if (computerSelection === "rock" && playerSelection === "scissors") {
     computerScore++;
-    return "You Lose! Rock beats scissors!";
-  } else if (
-    computerSelection == "paper" &&
-    playerSelection.toLowerCase() == "rock"
-  ) {
+    resultsParagraph.innerHTML = "You Lose! Rock beats scissors!";
+  } else if (computerSelection === "paper" && playerSelection === "rock") {
     computerScore++;
-    return "You Lose! Paper beats rock!";
-  } else if (
-    computerSelection == "scissors" &&
-    playerSelection.toLowerCase() == "paper"
-  ) {
+    resultsParagraph.innerHTML = "You Lose! Paper beats rock!";
+  } else if (computerSelection === "scissors" && playerSelection === "paper") {
     computerScore++;
-    return "You Lose! Scissors beats paper!";
+    resultsParagraph.innerHTML = "You Lose! Scissors beats paper!";
   } else {
-    return "It's a tie, try again!";
+    resultsParagraph.innerHTML = "It's a tie, try again!";
   }
 }
 
 function game() {
-  for (let i = 0; i < 5; i++) {
-    playerSelection = prompt("Please enter rock, paper or scissors");
-    let computerSelection = computerPlay();
-    playRound(playerSelection, computerSelection);
-    console.log(playRound(playerSelection, computerSelection));
-  }
-  if (playerScore > computerScore) {
-    console.log("You win the game!");
-  } else if (computerScore < playerScore) {
-    console.log("You lose the game!");
+  if (playerScore == 5) {
+    return;
+  } else if (computerScore == 5) {
+    return;
   } else {
-    console.log("It's a tie!");
+    playRound(playerSelection, computerSelection);
   }
-  playerScore = 0;
-  computerScore = 0;
+  showPlayerScore.innerHTML = "Player score: " + playerScore;
+  showComputerScore.innerHTML = "Computer score: " + computerScore;
+  if (playerScore === 5) {
+    resultsParagraph.innerHTML = "Game over, you win the game!";
+  } else if (computerScore === 5) {
+    resultsParagraph.innerHTML = "Game over, you lose the game!";
+  }
 }

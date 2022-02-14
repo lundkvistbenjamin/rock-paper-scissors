@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgb(172, 205, 206);
+  color: rgb(34, 34, 34);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 100px 100px;
+}
+
+.wrapper {
+  background-color: rgb(100, 144, 155);
+  padding: 100px 200px 50px 200px;
+  border-radius: 15px;
+  box-shadow: 1px 5px 15px 5px rgba(44, 44, 44, 0.51);
+}
+
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons button {
+  border: 3px solid rgb(17, 104, 119);
+  width: 80px;
+  padding: 7px 0px;
+  border-radius: 8px;
+  background-color: rgb(100, 144, 155);
+  color: rgb(34, 34, 34);
+}
+
+.buttons button:hover {
+  background-color: rgb(132, 188, 202);
+  cursor: pointer;
+}
+
+.textContainer {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.results p {
+  color: rgb(34, 34, 34);
+  height: 10px;
+}
+
+#show-player-score,
+#show-computer-score {
+  color: rgb(34, 34, 34);
+  height: 10px;
+}
